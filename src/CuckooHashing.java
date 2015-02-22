@@ -23,28 +23,50 @@ public class CuckooHashing {
 		if (!first.containsKey(hashfunction(newvalue, first))) {
 			first.put(hashfunction(newvalue, first), newvalue);
 			if (first == t1)
-				System.out.print("Insert value: " + newvalue + " into t1. ");
+				System.out.println("Insert value: " + newvalue + " into t1. ");
 			else
-				System.out.print("Insert value: " + newvalue + " into t2. ");
-		} else if (!second.containsKey(hashfunction(newvalue, second))) {
-			second.put(hashfunction(newvalue, second), newvalue);
-			if (first == t1)
-				System.out.print("t1 is not available, so we insert value: "
-						+ newvalue + " into t2");
-			else
-				System.out.print("t2 is not available, so we insert value: "
-						+ newvalue + " into t1");
+				System.out.println("Insert value: " + newvalue + " into t2. ");
+			String leftAlignFormat = "| %-5d | %-5d |%n";
+			System.out.format("+-------+-------+%n");
+			System.out.printf("|     table1    |%n");
+			System.out.format("+-------+-------+%n");
+			for (int i = 0; i < 11; i++) {
+				System.out.format(leftAlignFormat, i, t1.get(i));
+			}
+			System.out.format("+-------+-------+%n");
+			System.out.format("+-------+-------+%n");
+			System.out.printf("|     table2    |%n");
+			System.out.format("+-------+-------+%n");
+			for (int i = 0; i < 11; i++) {
+				System.out.format(leftAlignFormat, i, t2.get(i));
+			}
+			System.out.format("+-------+-------+%n");
 		} else {
 			int kickoutvalue = first.get(hashfunction(newvalue, first));
 			first.put(hashfunction(newvalue, first), newvalue);
 			if (first == t1)
-				System.out.println("Neither t1 and t2 is available, "
-						+ "so we kick out the value: " + kickoutvalue
-						+ " in t1, and insert value: " + newvalue + " into t1");
+				System.out.println("we kick out the value: " + kickoutvalue
+						+ " from t1, and insert value: " + newvalue
+						+ " into t1");
 			else
-				System.out.println("Neither t1 and t2 is available, "
-						+ "so we kick out the value: " + kickoutvalue
-						+ " in t2, and insert value: " + newvalue + " into t2");
+				System.out.println("we kick out the value: " + kickoutvalue
+						+ " from t2, and insert value: " + newvalue
+						+ " into t2");
+			String leftAlignFormat = "| %-5d | %-5d |%n";
+			System.out.format("+-------+-------+%n");
+			System.out.printf("|     table1    |%n");
+			System.out.format("+-------+-------+%n");
+			for (int i = 0; i < 11; i++) {
+				System.out.format(leftAlignFormat, i, t1.get(i));
+			}
+			System.out.format("+-------+-------+%n");
+			System.out.format("+-------+-------+%n");
+			System.out.printf("|     table2    |%n");
+			System.out.format("+-------+-------+%n");
+			for (int i = 0; i < 11; i++) {
+				System.out.format(leftAlignFormat, i, t2.get(i));
+			}
+			System.out.format("+-------+-------+%n");
 			insert(kickoutvalue, second);
 		}
 	}
